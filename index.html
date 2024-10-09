@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: Verdana;
+            margin: 0;
+            padding: 0;
+            /* background-color: black; */
+            box-sizing: border-box;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            font-family: inherit;
+        }
+
+        .container {
+            max-width: 1100px;
+            min-height: 400px;
+            margin: auto;
+            background-color: white;
+        }
+
+        .box h2 {
+            padding: 10px;
+            background-color: grey;
+            border: 1px solid grey;
+            /* border-bottom: none; */
+            cursor: pointer;
+            position: relative;
+        }
+
+        .box h2 i {
+            position: absolute;
+            right: 10px;
+            transition: 300ms;
+        }
+
+        .box p {
+            /* display: none; */
+            height: 0px;
+            border-top: none;
+            overflow: hidden;
+            /* border: 1px grey solid; */
+            /* padding: 0px 10px; */
+            transition: 400ms;
+        }
+
+        .open {
+            padding: 10px !important;
+            overflow: visible !important;
+            opacity: 1 !important;
+        }
+
+        .open-heading {
+            background-color: lightblue;
+        }
+
+        .open-heading i {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container"> 
+        <h1>FAQ</h1>
+        <div class="box">
+            <h2>Question 1
+                <i class="fa-solid fa-caret-down"></i>
+            </h2>
+            <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptas consequuntur
+                modi inventore optio laudantium cupiditate magni excepturi. Dolor adipisci hic magni suscipit ad vero
+                officiis libero natus excepturi obcaecati?
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta quos omnis obcaecati praesentium
+                exercitationem! Aliquam necessitatibus odit eaque dignissimos accusamus obcaecati libero veniam,
+                consectetur ut voluptas minus culpa labore perferendis.</p>
+        </div>
+        <div class="box">
+            <h2>Question 2
+                <i class="fa-solid fa-caret-down"></i>
+            </h2>
+            <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptas consequuntur
+                modi inventore optio laudantium cupiditate magni excepturi. Dolor adipisci hic magni suscipit ad vero
+                officiis libero natus excepturi obcaecati?</p>
+        </div>
+        <div class="box">
+            <h2>Question 3
+                <i class="fa-solid fa-caret-down"></i>
+            </h2>
+            <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptas consequuntur
+                modi inventore optio laudantium cupiditate magni excepturi. Dolor adipisci hic magni suscipit ad vero
+                officiis libero natus excepturi obcaecati?</p>
+        </div>
+        <div class="box">
+            <h2>Question 4
+                <i class="fa-solid fa-caret-down"></i>
+            </h2>
+            <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptas consequuntur
+                modi inventore optio laudantium cupiditate magni excepturi. Dolor adipisci hic magni suscipit ad vero
+                officiis libero natus excepturi obcaecati?</p>
+        </div>
+    </div>
+
+
+    <script>
+        var headings = document.querySelectorAll(".box h2");
+
+        for (heading of headings) {
+            heading.addEventListener(
+                "click",
+                function (event) {
+                    if (event.target.classList.contains("open-heading")) {
+                        event.target.classList.remove("open-heading");
+                        event.target.nextElementSibling.classList.remove("open");
+                        event.target.nextElementSibling.style.height = "";
+                        var currentOpen = document.querySelector(".open");
+                        var openHeading = document.querySelector(".open-heading");
+                        if (currentOpen != null) {
+                            currentOpen.classList.remove("open");
+                            openHeading.classList.remove("open-heading");
+                            currentOpen.style.height = "";
+                        }
+                    } else {
+                        var currentOpen = document.querySelector(".open");
+                        var openHeading = document.querySelector(".open-heading");
+                        if (currentOpen != null) {
+                            currentOpen.classList.remove("open");
+                            openHeading.classList.remove("open-heading");
+                            currentOpen.style.height = "";
+                        }
+                        var nextP = event.target.nextElementSibling;
+                        event.target.classList.add("open-heading");
+                        nextP.classList.add("open");
+                        nextP.style.height = nextP.scrollHeight + 20 + "px";
+                    }
+
+                }
+            )
+        }
+
+    </script>
+</body>
+
+</html>
